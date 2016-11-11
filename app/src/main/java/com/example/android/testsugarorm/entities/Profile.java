@@ -1,5 +1,7 @@
 package com.example.android.testsugarorm.entities;
 
+import android.graphics.Color;
+
 import com.example.android.testsugarorm.utils.DateUtils;
 import com.orm.SugarRecord;
 
@@ -18,7 +20,7 @@ public class Profile extends SugarRecord {
     String url;
     String api_key;
     String secret;
-    String color;
+    int color = Color.parseColor("#1976d2");  // material blue 700
     String lastAccess;
     String created;
 
@@ -27,7 +29,7 @@ public class Profile extends SugarRecord {
         this.created = DateUtils.getTodayDateLong();
     }
 
-    public Profile(String name, String description, String url, String api_key, String secret, String color) {
+    public Profile(String name, String description, String url, String api_key, String secret, int color) {
         this.name = name;
         this.description = description;
         this.url = url;
@@ -59,6 +61,10 @@ public class Profile extends SugarRecord {
         this.secret = secret;
     }
 
+    public void setColor(int color){
+        this.color = color;
+    }
+
     public void setLastAccess(String dateStr ){
         this.lastAccess = dateStr;
     }
@@ -67,7 +73,20 @@ public class Profile extends SugarRecord {
 
     public String getDescription() {return this.description; }
 
-    public String getColor() { return this.color; }
+    public int getColor() { return this.color; }
 
 
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "name='" + this.name + '\'' +
+                ", description='" + this.description + '\'' +
+                ", url='" + this.url + '\'' +
+                ", api_key='" + this.api_key + '\'' +
+                ", secret='" + this.secret + '\'' +
+                ", color=" + this.color +
+                ", lastAccess='" + this.lastAccess + '\'' +
+                ", created='" + this.created + '\'' +
+                '}';
+    }
 }

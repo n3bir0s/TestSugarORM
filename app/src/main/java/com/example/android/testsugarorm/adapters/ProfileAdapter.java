@@ -1,4 +1,4 @@
-package com.example.android.testsugarorm;
+package com.example.android.testsugarorm.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.android.testsugarorm.R;
 import com.example.android.testsugarorm.entities.Profile;
 import com.example.android.testsugarorm.utils.StringUtils;
 

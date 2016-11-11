@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.android.testsugarorm.adapters.ProfileAdapter;
 import com.example.android.testsugarorm.entities.Profile;
 import com.orm.query.Select;
 
