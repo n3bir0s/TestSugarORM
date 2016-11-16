@@ -1,6 +1,7 @@
 package com.example.android.testsugarorm.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,9 +42,9 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.profile_list_item, parent, false);
         }
-
-        // Find the earthquake at the given position in the list of earthquakes
-        Profile currentProfile = getItem(position);
+        Log.v("ProfileAdapter", "pos: " + position);
+        // Find the profile at the given position in the list of profiles
+        final Profile currentProfile = getItem(position);
 
         TextView profileIconView = (TextView) listItemView.findViewById(R.id.profile_icon);
 
@@ -56,9 +57,6 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
         nameView.setText(currentProfile.getName());
         TextView descriptionView = (TextView) listItemView.findViewById(R.id.profile_description);
         descriptionView.setText(currentProfile.getDescription());
-
-
-
 
         return listItemView;
     }

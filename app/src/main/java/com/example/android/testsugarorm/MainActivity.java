@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -50,7 +51,21 @@ public class MainActivity extends AppCompatActivity {
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         profilesListView.setAdapter(mAdapter);
-        //displayCount();
+
+
+        profilesListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+
+                Profile item = (Profile) parent.getItemAtPosition(position);
+
+                intent.putExtra("object", (Profile) parent.getAdapter().getItem(position));
+
+                startActivity(intent);
+            }
+        });
     }
 
     public void displayCount(){

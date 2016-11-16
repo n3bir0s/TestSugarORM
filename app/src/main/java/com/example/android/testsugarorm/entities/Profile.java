@@ -5,6 +5,8 @@ import android.graphics.Color;
 import com.example.android.testsugarorm.utils.DateUtils;
 import com.orm.SugarRecord;
 
+import java.io.Serializable;
+
 /**
  * Project: TestORM
  *
@@ -13,7 +15,7 @@ import com.orm.SugarRecord;
  * Created by Sven on 10.11.2016..
  * DwS-Solutions.com - All rights reserved  - Copyright (c) 2016
  */
-public class Profile extends SugarRecord {
+public class Profile extends SugarRecord implements Serializable{
 
     String name;
     String description;
@@ -75,6 +77,17 @@ public class Profile extends SugarRecord {
 
     public int getColor() { return this.color; }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public String getApiKey() {
+        return api_key;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
 
     @Override
     public String toString() {
@@ -89,4 +102,6 @@ public class Profile extends SugarRecord {
                 ", created='" + this.created + '\'' +
                 '}';
     }
+
+
 }

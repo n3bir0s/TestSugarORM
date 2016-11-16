@@ -1,5 +1,6 @@
 package com.example.android.testsugarorm;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -29,12 +30,12 @@ public class EditActivity extends AppCompatActivity {
     EditText mProfileApiKey;
     EditText mProfileSecret;
 
+    private int profileUpdate = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-
-        profile = new Profile();
 
         colorScroll = (HorizontalScrollView) findViewById(R.id.colorScroll);
 
@@ -45,7 +46,35 @@ public class EditActivity extends AppCompatActivity {
         mProfileSecret = (EditText) findViewById(R.id.input_profile_secret);
         mProfileUrl = (EditText) findViewById(R.id.input_profile_url);
 
-        setupColorChooser();
+        Intent intent = getIntent();
+
+        //profile = new Profile();
+
+        profile = (Profile) intent.getExtras().get("object");
+
+        Log.v("Edit", profile.toString());
+
+        // If the intent DOES NOT contain a pet content URI, then we know that we are
+        // creating a new pet.
+        if (profile == null) {
+            // This is a new pet, so change the app bar to say "Add a Pet"
+
+            setTitle(getString(R.string.editor_activity_title_new_pet));
+        } else {
+            // Otherwise this is an existing pet, so change app bar to say "Edit Pet"
+            profileUpdate = 1;
+            setTitle(getString(R.string.editor_activity_title_edit_pet));
+
+            loadProfile();
+        }
+    }
+
+    private void loadProfile() {
+        mProfileName.setText(profile.getName());
+        mProfileDescription.setText(profile.getDescription());
+        mProfileUrl.setText(profile.getUrl());
+        mProfileApiKey.setText(profile.getApiKey());
+        mProfileSecret.setText(profile.getSecret());
     }
 
     @Override
@@ -98,18 +127,24 @@ public class EditActivity extends AppCompatActivity {
         String apiKey = mProfileApiKey.getText().toString().trim();
         String secret = mProfileSecret.getText().toString().trim();
 
+//        long pid = profile.getId();
+        //profile = Profile.findById(Profile.class, );
+
+
         profile.setName(name);
         profile.setDescription(description);
         profile.setUrl(url);
         profile.setApiKey(apiKey);
         profile.setSecret(secret);
-        profile.save();
 
+        profile.save();
         Toast.makeText(this,"Profile: " + name + " saved successfully!",Toast.LENGTH_SHORT).show();
     }
 
     public void deleteProfile(){
         //TODO delete profile
+
+
 
         Toast.makeText(this,"Delete profile pressed",Toast.LENGTH_SHORT).show();
     }

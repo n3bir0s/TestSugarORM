@@ -9,4 +9,6 @@
     <string name="hint_profile_secret">API Secret</string>
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
+    <string name="editor_activity_title_new_pet">Add Profile</string>
+    <string name="editor_activity_title_edit_pet">Edit Profile</string>
 </resources>
